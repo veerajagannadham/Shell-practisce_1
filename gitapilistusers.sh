@@ -8,6 +8,10 @@
 # Purpose : This Script will help you to check the list of users for the particular repo without goining to GitHub API and it wioll help you to understand from CLI by using script.
 ############################
 
+#helper function
+
+
+helper ()
 
 # GitHub API URL 
   API_URL="https://api.github.com"
@@ -39,7 +43,7 @@
 		local endpoint="repos/${REPO_OWNER}/${REPO_NAME}/collaborators"
 
 		#fetch the list of collaborators on the repository
-		collaborators="$(github_api_get "$endpoint" | jq -r '.[] | select(.permission.pull == true) | .login')"
+      		collaborators="$(github_api_get "$endpoint" | jq -r '.[] | select(.permission.pull == true) | .login')"
 
 		# Display the list of collaborotars with read access
 		if [[ -z "$collaborators" ]]; then
@@ -51,6 +55,12 @@
 
 	}
 
+	function helper{
+		expected_cmd_args=2
+		if [ $# -ne $expected-cmd_args];then
+		echo "please execute the script with required cmd args"
+		echo "asd"
+	}
 
 	#main Script
 	
